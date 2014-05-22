@@ -7,13 +7,15 @@ class WMS(MetaLayer):
     config_properties = [
       {'name':'name', 'description': 'Name of Layer'}, 
       {'name':'url', 'description': 'URL of Remote Layer'},
+      {'name':'styles', 'description': 'Layer Styles'},
       {'name':'user', 'description': 'Username of remote server: used for basic-auth protected backend WMS layers.'},
       {'name':'password', 'description': 'Password of remote server: Use for basic-auth protected backend WMS layers.'},
     ] + MetaLayer.config_properties  
      
-    def __init__ (self, name, url = None, user = None, password = None, **kwargs):
+    def __init__ (self, name, url = None, styles = "", user = None, password = None, **kwargs):
         MetaLayer.__init__(self, name, **kwargs) 
         self.url = url
+        self.styles = styles
         self.user = user
         self.password = password
 
@@ -25,6 +27,7 @@ class WMS(MetaLayer):
           "srs": self.srs,
           "format": self.mime_type,
           "layers": self.layers,
+          "styles": self.styles,
         }, self.user, self.password)
         tile.data, response = wms.fetch()
         return tile.data 
