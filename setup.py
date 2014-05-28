@@ -32,7 +32,7 @@ else:
    extra['data_files']=[('TileCache', ['tilecache.cfg']),('.',['dev.ini'])]
     
 setup(name='TileCache',
-      version='2.11',
+      version='2.11.1',
       description='a web map tile caching system',
       author='TileCache Contributors',
       author_email='tilecache@lists.osgeo.org',
